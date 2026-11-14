@@ -1,0 +1,12 @@
+# Build output
+out/
+*.o
+*.elf
+
+# Device dumps and firmware images stay on your PC (they contain Samsung
+# firmware and can contain device identifiers)
+facts/
+*.img
+*.bin
+*.dmg
+*.ipsw
