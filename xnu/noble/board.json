@@ -1,0 +1,12 @@
+{
+  "_note": "Every null must be MEASURED on the Note 5 before apply-noble.py will run. Hex strings like \"0xcc000000\" are fine. fb_width/fb_height are the panel's published 1440x2560; fb_stride_bytes, addresses and the rest are unknown.",
+  "fb_phys": null,
+  "fb_width": 1440,
+  "fb_height": 2560,
+  "fb_stride_bytes": null,
+  "entry_marker_phys": null,
+  "boot_mpidr": null,
+  "klog_phys": null,
+  "klog_size": null,
+  "use_phys_timer": null
+}

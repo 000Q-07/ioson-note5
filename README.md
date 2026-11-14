@@ -32,6 +32,8 @@ Note 5 and must be measured; none of the S8's numbers are reused.
 | `tools/make_board_h.py` | Prints board.h suggestions from the collected facts (never guesses). |
 | `shim/noble/` | **Stage 1.** Minimal probe: S-Boot runs it from BOOT; it prints EL, MIDR, DTB pointer etc. to the screen and a pstore log, then parks. Boots nothing. |
 | `tools/mkboot_samsung.py`, `tools/bootimg_info.py` | Pack / inspect Samsung boot images (S8 layout, **unverified** on the Note 5). |
+| `xnu/noble/apply-noble.py`, `xnu/noble/board.json` | **XNU layer.** Swaps the S8 board-fact block for a Note 5 one in an S8-patched XNU tree. Refuses to run until every fact in `board.json` is measured. |
+| `docs/xnu-port-worklist.md` | Which XNU files still need real Note 5 drivers (UFS, SMP, touch, ...) and in what order. |
 
 ## How to use it
 
