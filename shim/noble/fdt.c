@@ -80,6 +80,8 @@ int fdt_walk(uintptr_t fdt, fdt_cb cb, void *ctx)
 	if (off_struct > total || size_struct > total - off_struct ||
 	    off_str > total || size_str > total - off_str)
 		return -2;
+	if (size_str && b[off_str + size_str - 1])	/* every name must end inside the block */
+		return -2;
 
 	const char *names[MAX_DEPTH];
 	uint32_t ac[MAX_DEPTH], sc[MAX_DEPTH];

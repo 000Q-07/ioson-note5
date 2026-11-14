@@ -30,7 +30,8 @@ Note 5 and must be measured; none of the S8's numbers are reused.
 | --- | --- |
 | `tools/collect-facts.sh` | **Stage 0.** Read-only: collects RAM map, partitions, kernel cmdline, device tree and a copy of the stock BOOT image from the phone in TWRP. |
 | `tools/make_board_h.py` | Prints board.h suggestions from the collected facts (never guesses). |
-| `shim/noble/` | **Stage 1.** Minimal probe: S-Boot runs it from BOOT; it prints EL, MIDR, DTB pointer etc. to the screen and a pstore log, then parks. Boots nothing. |
+| `shim/noble/` | **Stage 1.** Minimal probe: S-Boot runs it from BOOT; it prints EL, MIDR, the device tree it was handed (RAM map, reserved regions, ramoops zone, CPU ids, kernel args) to the screen and a pstore log, then parks. Where `board.h` has no address, it takes the log and screen locations from that tree, but only from regions the tree itself lists. Boots nothing. |
+| `tests/` | Host-side test (`bash tests/run.sh`) of the device-tree reader against synthetic trees plus 100,000 corrupted ones, with a guard page to catch any read past the end. Runs on a PC; it says nothing about the real phone. |
 | `tools/mkboot_samsung.py`, `tools/bootimg_info.py` | Pack / inspect Samsung boot images (S8 layout, **unverified** on the Note 5). |
 | `xnu/noble/apply-noble.py`, `xnu/noble/board.json` | **XNU layer.** Swaps the S8 board-fact block for a Note 5 one in an S8-patched XNU tree. Refuses to run until every fact in `board.json` is measured. |
 | `docs/xnu-port-worklist.md` | Which XNU files still need real Note 5 drivers (UFS, SMP, touch, ...) and in what order. |

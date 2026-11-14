@@ -59,7 +59,8 @@ static void on_event(void *ctx, const struct fdt_ev *e)
 			d->initrd_end = fdt_cells(e->val, e->len / 4);
 			d->has_initrd |= 2;
 		}
-	} else if (e->depth == 1 && fdt_startswith(e->node, "memory") && fdt_streq(e->prop, "reg")) {
+	} else if (e->depth == 1 && (fdt_streq(e->node, "memory") || fdt_startswith(e->node, "memory@")) &&
+		   fdt_streq(e->prop, "reg")) {
 		uint32_t step = (e->pac + e->psc) * 4;
 		for (uint32_t off = 0; step && off + step <= e->len && d->nmem < DT_MAX_MEM; off += step) {
 			struct dtregion *r = &d->mem[d->nmem++];
